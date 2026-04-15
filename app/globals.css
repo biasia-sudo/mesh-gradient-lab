@@ -1,0 +1,219 @@
+:root {
+  color-scheme: dark;
+  --bg: #0d1117;
+  --panel: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #f3eee6;
+  --muted: rgba(243, 238, 230, 0.72);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  background:
+    radial-gradient(circle at top, rgba(117, 145, 202, 0.16), transparent 30%),
+    linear-gradient(180deg, #11151c 0%, #090b10 100%);
+  color: var(--text);
+}
+
+a { color: inherit; text-decoration: none; }
+
+.page-shell {
+  width: min(1400px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 28px 0 80px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1.2fr;
+  gap: 28px;
+  align-items: start;
+  min-height: 82vh;
+}
+
+.hero-copy {
+  position: sticky;
+  top: 24px;
+  padding: 28px 24px 28px 0;
+}
+
+.eyebrow, .family-heading p {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3rem, 5vw, 6rem);
+  line-height: 0.95;
+  max-width: 9ch;
+  letter-spacing: -0.045em;
+}
+
+.lede {
+  max-width: 58ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 22px 0 0;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hero-meta span, .family-rail a {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+}
+
+.hero-stack, .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.family-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 18px 0 40px;
+}
+
+.family-section {
+  padding-top: 24px;
+  margin-top: 12px;
+}
+
+.family-heading h2 {
+  margin: 0 0 20px;
+  font-size: clamp(1.6rem, 2.3vw, 2.4rem);
+  max-width: 18ch;
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25);
+}
+
+.mesh-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  isolation: isolate;
+  background-size: 100% 100%;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.mesh-frame::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18), transparent 32%),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 18%);
+  mix-blend-mode: soft-light;
+  animation: float 16s ease-in-out infinite alternate;
+}
+
+.mesh-noise,
+.mesh-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mesh-noise {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+.mesh-glow {
+  inset: auto -10% -18% -10%;
+  height: 48%;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.22), transparent 60%);
+  filter: blur(34px);
+}
+
+.mesh-caption {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(8, 8, 10, 0.02), rgba(8, 8, 10, 0.34));
+  backdrop-filter: blur(10px);
+}
+
+.mesh-caption span,
+.mesh-caption em {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.82);
+}
+
+.mesh-caption strong {
+  font-size: 1.25rem;
+}
+
+.card-copy {
+  padding: 16px 16px 18px;
+}
+
+.card-copy p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  min-height: 3.2em;
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.swatches span {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+@keyframes drift {
+  0% { transform: scale(1) rotate(0deg); filter: saturate(1) contrast(1.02); }
+  100% { transform: scale(1.06) rotate(-2deg); filter: saturate(1.08) contrast(1.05); }
+}
+
+@keyframes float {
+  0% { transform: translate3d(-4%, -2%, 0) scale(1); }
+  100% { transform: translate3d(5%, 3%, 0) scale(1.08); }
+}
+
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-copy { position: static; padding-right: 0; }
+  .hero-stack, .grid { grid-template-columns: 1fr; }
+}
